@@ -1,0 +1,5 @@
+#!/bin/bash
+
+docker-compose up -d
+docker exec -it sample_app_php bash -c "composer install && cp .env.example .env && php artisan key:generate && npm install"
+docker-compose stop
