@@ -1,0 +1,72 @@
+@charset "utf-8";
+//Description.........................................
+//
+// カラーテーマを定義するscss
+//
+//.......................................................
+
+// Color ==============
+
+$text-ul: #bfbfbf;
+$text-l: #a7a7a7;
+$text-m: rgb(121, 121, 121);
+$text-d: #000;
+
+$bg-ul: rgb(250, 250, 253);
+$bg-l: rgb(240, 240, 243);
+$bg-m: #000;
+$bg-d: #000;
+
+$main-l: #000;
+$main-m: #000;
+$main-d: #000;
+
+$sub-l: #000;
+$sub-m: #000;
+$sub-d: #000;
+
+$accent-l: #000;
+$accent-m: #000;
+$accent-d: #000;
+
+$border-l: rgb(240, 240, 243);
+$border-m: rgb(223, 223, 226);;
+$border-d: rgb(163, 163, 166);;
+
+$link-l: #000;
+$link-m: #27bdac;
+$link-d: #000;
+
+$submit-m: rgb(10, 132, 255);
+
+$error-m: #000;
+
+$grayout-m: #c9c9d0;
+
+
+// Shadow =============
+
+@mixin grayout {
+	font-weight: 700;
+	color: rgb(130, 130, 141);
+	background: $grayout-m;
+}
+@mixin justify {
+	text-align: justify;
+	word-break: break-all;
+}
+@mixin shadow01( $h: 0px , $v: 3px , $b: 4px , $s: -1px , $c: rgba(10,10,10,0.1) ) {
+	box-shadow: $h $v $b $s $c;
+}
+@mixin shadow02( $h: 0px , $v: 7px , $b: 15px , $s: -3px , $c: rgba(10,10,10,0.1) ) {
+	box-shadow: $h $v $b $s $c;
+}
+@mixin shadow03( $h: 0px , $v: 21px , $b: 27px , $s: -7px , $c: rgba(10,10,10,0.1) ) {
+	box-shadow: $h $v $b $s $c;
+}
+@mixin shadow04( $h: 0px , $v: 33px , $b: 40px , $s: -10px , $c: rgba(10,10,10,0.1) ) {
+	box-shadow: $h $v $b $s $c;
+}
+@mixin shadow05( $h: 0px , $v: 45px , $b: 45px , $s: -15px , $c: rgba(10,10,10,0.1) ) {
+	box-shadow: $h $v $b $s $c;
+}
