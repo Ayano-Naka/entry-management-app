@@ -1,0 +1,21 @@
+@extends('layouts.template')
+
+<link href="css/styles.css" rel="stylesheet">
+
+@section('content')
+<form action="{{ url('/edit')}}" method="POST">
+    @csrf
+    <div class="edit-wrapper">
+        <p style="border-bottom: 1px solid #bbbbbb; background:#b3d2ef;">タスクを編集する</p>
+        <p>TODO<input type="text" name="task" value="{{$task->task}}" style="width:70%"></p>
+        <p>期限<input type="date" name="limit" value="{{$task->limit}}" ></p>
+
+        <div class="submit-wrapper" style="margin-right: 1rem;">
+            <button class="submit-btn">
+                <span class="nomal">submit</span>
+                <span class="hover">送信</span>
+            </button>
+        </div>
+    </div>
+</form>
+@endsection
