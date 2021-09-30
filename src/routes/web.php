@@ -13,7 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'EntryController@index');
+
+Route::get('/task','TaskController@index');
+
+Route::post('/task','TaskController@create');
+
+Route::get('/edit/{id}','TaskController@showEditForm');
+
+Route::post('/edit', 'TaskController@edit');
 
 Route::get('/company', function () {
     return view('company');
@@ -29,4 +39,16 @@ Route::get('/add-to-list',function(){
 
 Route::get('/setting',function(){
     return view('setting');
+});
+
+Route::get('/schedule',function(){
+    return view('schedule');
+});
+
+// Route::get('/edit',function(){
+//     return view('edit');
+// });
+
+Route::get('/calendar',function(){
+    return view('calendar');
 });
