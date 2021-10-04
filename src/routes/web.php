@@ -25,6 +25,8 @@ Route::get('/edit/{id}','TaskController@showEditForm');
 
 Route::post('/edit', 'TaskController@edit');
 
+Route::post('/task/{id}', 'TaskController@delete');
+
 Route::get('/company', function () {
     return view('company');
 });
@@ -45,10 +47,10 @@ Route::get('/schedule',function(){
     return view('schedule');
 });
 
-// Route::get('/edit',function(){
-//     return view('edit');
-// });
-
 Route::get('/calendar',function(){
     return view('calendar');
+});
+
+Route::get('/practice', function(){
+    return view ('practice');
 });
