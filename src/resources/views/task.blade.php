@@ -23,6 +23,8 @@
                 <td>期限</td>
             </tr>
             @foreach ($tasks as $task)
+            <form action="/task/{{$task->id}}" method="POST">
+            @csrf
             <tr>
                 <td style="border-top: 1px solid #bbbbbb;">
                 {{$task -> task}}
@@ -34,19 +36,16 @@
                 <a href="/edit/{{$task->id}}">編集</a>
                 </td>
                 <td class="delete" style="border-top: 1px solid #bbbbbb;">
-                <a href="">削除</a>
+                <input type="submit" name="delete" value="削除">
                 </td>
             </tr>
+            </form>
             @endforeach
         </table>
     </div>
-    <ul class="paging">
-        <li><button><</button></li>
-        <li><button>1</button></li>
-        <li><button>2</button></li>
-        <li><button>3</button></li>
-        <li><button>></button></li>
-    </ul>
+    <div class="paging">
+        {{ $tasks->links() }}
+</div>
 </form>
 
 @endsection

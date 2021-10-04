@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class TaskController extends Controller
 {
     public function index(){
-        $tasks = Task::orderBy('id','asc')->get();
+        $tasks = Task::orderBy('id','desc')->paginate(5);
         return view('task',[
             "tasks" => $tasks
         ]);
@@ -38,4 +38,10 @@ class TaskController extends Controller
         ]);
         return redirect('/task');
     }
+
+    public function delete(Request $request){
+        Task::find($request->id)->delete();
+        return redirect('/task');
+    }
+
 }
