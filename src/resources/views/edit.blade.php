@@ -1,10 +1,9 @@
 @extends('layouts.template')
 
-<link href="css/styles.css" rel="stylesheet">
-
 @section('content')
 <form action="{{ url('/edit')}}" method="POST">
     @csrf
+    <input type="hidden" name="id" value="{{$task->id}}">
     <div class="edit-wrapper">
         <p style="border-bottom: 1px solid #bbbbbb; background:#b3d2ef;">タスクを編集する</p>
         <p>TODO<input type="text" name="task" value="{{$task->task}}" style="width:70%"></p>
