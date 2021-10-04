@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 </head>
 <body>
@@ -22,10 +23,10 @@
         <!-- menu -->
         <aside>
             <ul class="side-bar">
-                <li><a href=""><span class="nomal">List</span><span class="hover">一覧</span></a></li>
-                <li><a href=""><span class="nomal">Schedule</span><span class="hover">予定表</span></a></li>
-                <li><a href=""><span class="nomal">To-Do List</span><span class="hover">することリスト</span></a></li>
-                <li><a href=""><span class="nomal">Settings</span><span class="hover">設定</span></a></li>
+                <li><a href="/"><span class="nomal">List</span><span class="hover">一覧</span></a></li>
+                <li><a href="/calendar"><span class="nomal">Schedule</span><span class="hover">予定表</span></a></li>
+                <li><a href="/task"><span class="nomal">To-Do List</span><span class="hover">することリスト</span></a></li>
+                <li><a href="/setting"><span class="nomal">Settings</span><span class="hover">設定</span></a></li>
             </ul>
         </aside>
         <!-- main -->
