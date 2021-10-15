@@ -20,7 +20,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->task = $request->task;
         $task->limit = $request->limit;
-        $task->save();
+        $task -> save();
         return redirect('/task');
     }
 

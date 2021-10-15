@@ -16,6 +16,7 @@
             <span class="hover">送信</span>
         </button>
     </div>
+</form>
     <div class="todo-table">
         <table>
             <tr>
@@ -24,7 +25,7 @@
             </tr>
             @foreach ($tasks as $task)
             <form action="/task/{{$task->id}}" method="POST">
-            @csrf
+            {{ csrf_field() }}
             <tr>
                 <td style="border-top: 1px solid #bbbbbb;">
                 {{$task -> task}}
@@ -46,6 +47,5 @@
     <div class="paging">
         {{ $tasks->links() }}
 </div>
-</form>
 
 @endsection
