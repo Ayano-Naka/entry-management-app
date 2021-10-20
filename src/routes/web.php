@@ -27,30 +27,46 @@ Route::post('/edit', 'TaskController@edit');
 
 Route::post('/task/{id}', 'TaskController@delete');
 
-Route::get('/company', function () {
-    return view('company');
+Route::get('/calendar','CalendarController@index');
+
+Route::get('/calendar', 'CalendarController@show');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth', 'web']], function () {
+    Route::get('/user/setting', 'Admin\UserController@index');
+    Route::post('/user/setting', 'Admin\UserController@update');
+    Route::get('/user/editpassword','Admin\UserController@editPassword')->name('user.password.edit');
+    Route::post('/user/editpassword','Admin\UserController@updatePassword')->name('user.password.update');
 });
+
+Route::get('/', 'PostController@index');
+
+Route::post('/post','PostController@create');
+
+Route::get('/post','PostController@showCreateForm');
+
+Route::get('/post', 'PostController@new')->name('pullDown');
+
+Route::get('/postedit/{id}', 'PostController@showEdit')->name('posts.edit');
+
+Route::post('/postedit/{id}', 'PostController@edit');
+
+Route::get('/company/{id}','PostController@show')->name('posts.show');
+
+Route::post('/company/{id}','PostController@delete');
+
+
+
+
+
 
 Route::get('/search-result',function(){
     return view('search');
-});
-
-Route::get('/add-to-list',function(){
-    return view('add');
-});
-
-Route::get('/setting',function(){
-    return view('setting');
 });
 
 Route::get('/schedule',function(){
     return view('schedule');
 });
 
-Route::get('/calendar',function(){
-    return view('calendar');
-});
-
-Route::get('/practice', function(){
-    return view ('practice');
-});
+// Route::get('/profile','ProfileController@profile');
