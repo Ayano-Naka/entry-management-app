@@ -15,18 +15,24 @@ class UserController extends Controller
     
     public function update(Request $request) {
 
-        $user_form = $request->all();
-        // 現在認証しているユーザーを取得
         $user = Auth::user();
-        //不要な「_token」の削除
-        unset($user_form['_token']);
-        //保存
-        $user->fill($user_form)->save();
-        //リダイレクト
-        return redirect('user/setting');
-    } 
+        $user->id = $request->user()->id;
+        $user->id = $request->user()->id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->profile_image = $request->profile_image;
+
+        if ($request->hasFile('profile_image')) {
+            $path = $request->file('profile_image')->store('public');
+            $user->profile_image = basename($path);
+            }
+            $user->save();
+            return redirect('user/setting');
+    }
+
+
     public function editPassword(){
-        return view('user.editpassword');
+        return view('user.editpassword',['user' => Auth::user() ]);
     }
 
     public function updatePassword(UpdatePasswordRequest $request){

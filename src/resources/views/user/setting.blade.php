@@ -7,17 +7,26 @@
     アカウント設定
 </div>
 
-<form action="{{ action('Admin\UserController@update') }}" method="POST">
+<form action="{{ action('Admin\UserController@update') }}" method="POST" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <input type="hidden" name="id" value="{{ $user->id }}" />
     <div class="setting-wrapper">
-        <label><a href=""><img class="icon" src="/images/profile_icon.png" alt=""></a></label>
+        <label>
+            @if($user->profile_image == null)
+            <img src="/storage/default.png">
+            @else
+            <img src="/storage/{{$user->profile_image}}">
+            @endif
+        </label>
+        <input type="file" name="profile_image" id="profile_image">
             <div class="text-wrapper">
                 <input type="text" name="name" class="form-control" value="{{ $user->name }}" style="width: 48%;">
             </div>
-    </div>  
+    </div> 
     <div class="setting-wrapper">
         <label>メールアドレス</label>
             <div class="text2-wrapper">
-                <input type="text" name="email" class="form-control" value="{{ $user->email }}">
+                <input type="email" name="email" class="form-control" value="{{ $user->email }}">
             </div>
     </div>
         <div class="settingpass">
@@ -28,8 +37,6 @@
             <span class="nomal">submit</span>
             <span class="hover">送信</span>
         </button>
-        {{ csrf_field() }}
     </div>
 </form>
-
 @endsection
