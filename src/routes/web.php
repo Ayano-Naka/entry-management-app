@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'EntryController@index');
-
 Route::get('/task','TaskController@index');
 
 Route::post('/task','TaskController@create');
@@ -44,8 +42,6 @@ Route::get('/', 'PostController@index');
 
 Route::post('/post','PostController@create');
 
-Route::get('/post','PostController@showCreateForm');
-
 Route::get('/post', 'PostController@new')->name('pullDown');
 
 Route::get('/postedit/{id}', 'PostController@showEdit')->name('posts.edit');
@@ -58,9 +54,6 @@ Route::post('/company/{id}','PostController@delete');
 
 
 
-
-
-
 Route::get('/search-result',function(){
     return view('search');
 });
@@ -68,5 +61,3 @@ Route::get('/search-result',function(){
 Route::get('/schedule',function(){
     return view('schedule');
 });
-
-// Route::get('/profile','ProfileController@profile');
