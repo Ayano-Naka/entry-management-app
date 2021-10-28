@@ -32,11 +32,11 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @if(isset($user->profile_image) == null)
+                                @if(Auth::user()->profile_image == null)
                                 <img class="icon" src="/storage/default.png">
                                 @else
-                                <img class="icon" src="/storage/{{$user->profile_image}}">
-                                @endif   
+                                <img class="icon" src="/storage/{{Auth::user()->profile_image}}">
+                                @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
