@@ -1,13 +1,48 @@
 @extends('layouts.template')
 @section('content')
+
     <!-- main -->
     <div class="main-visual">
         <section class="shapes-group">
-            <div class="tags"><p class="text">エントリー中</p>5件</div>
-            <div class="tags"><p class="text">書類選考中</p>5件</div>
-            <div class="tags"><p class="text">一次選考中</p>5件</div>
-            <div class="tags"><p class="text">二次選考中</p>5件</div>
-            <div class="box"><p class="text">内定</p>5件</div>
+            @foreach($first as $one)
+            <div class="tags"><p class="text">エントリー中</p>{{$one->count_stageIdOne}}件</div>
+            @endforeach
+
+            @if(count($first) <= 0)
+            <div class="tags"><p class="text">エントリー中</p>0件</div>
+            @endif
+
+            @foreach($second as $two)
+            <div class="tags"><p class="text">書類選考中</p>{{$two->count_stageIdTwo}}件</div>
+            @endforeach
+
+            @if(count($second) <= 0)
+            <div class="tags"><p class="text">書類選考中</p>0件</div>
+            @endif
+
+            @foreach($third as $three)
+            <div class="tags"><p class="text">一次選考中</p>{{$three->count_stageIdThree}}件</div>
+            @endforeach
+
+            @if(count($third) <= 0)
+            <div class="tags"><p class="text">一次選考中</p>0件</div>
+            @endif
+
+            @foreach($fourth as $four)
+            <div class="tags"><p class="text">二次選考中</p>{{$four->count_stageIdFour}}件</div>
+            @endforeach
+
+            @if(count($fourth) <= 0)
+            <div class="tags"><p class="text">二次選考中</p>0件</div>
+            @endif
+
+            @foreach($fifth as $five)
+            <div class="box"><p class="text">内定</p>{{$five->count_stageIdFive}}件</div>
+            @endforeach
+
+            @if(count($fifth) <= 0)
+            <div class="box"><p class="text">内定</p>0件</div>
+            @endif
         </section>
     </div>
     <!--search -->

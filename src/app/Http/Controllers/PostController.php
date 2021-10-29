@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\DB;
@@ -10,11 +11,29 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
+        /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
-        $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('entry', [
-            'posts' => $posts
-        ]);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+
+        $this->posts = new Post();
+        $first = $this->posts->getCountOne();
+        $second = $this->posts->getCountTwo();
+        $third = $this->posts->getCountThree();
+        $fourth = $this->posts->getCountFour();
+        $fifth = $this->posts->getCountFive();
+        
+        return view('entry',
+        compact('posts','first','second','third','fourth','fifth')
+    );
     }
 
     public function create(Request $request){
@@ -31,21 +50,18 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    public function showCreateForm(){
-        return view('post');
-    }
-
     public function new(){
         $prefs = config('pref');
         $stages = config('stage');
-        return view('/post')->with(['prefs' => $prefs],['stages' => $stages])->with(['stages' => $stages]);
+        return view('/post', compact('prefs', 'stages'));
     }
 
     public function showEdit(int $id){
         $post = Post::find($id);
-        return view('editpost',[
-            "post" => $post,
-        ]);
+        return view('editpost',
+        ['user' => Auth::user() ],
+        ["post" => $post]
+    );
     }
 
     public function edit(Request $request){
@@ -64,14 +80,14 @@ class PostController extends Controller
 
     public function show(int $id){
         $post = Post::find($id);
-        return view('company',[
-            'post' => $post,
-        ]);
+        return view('company',
+        ['user' => Auth::user() ],
+        ['post' => $post]
+    );
     }
 
     public function delete(Request $request){
         Post::find($request->id)->delete();
             return redirect('/');
     }
-
 }
