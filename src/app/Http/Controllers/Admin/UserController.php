@@ -16,11 +16,8 @@ class UserController extends Controller
     public function update(Request $request) {
 
         $user = Auth::user();
-        $user->id = $request->user()->id;
-        $user->id = $request->user()->id;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->profile_image = $request->profile_image;
 
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('public');
@@ -41,41 +38,4 @@ class UserController extends Controller
         $user->save();
         return redirect()->back()->with('update_password_success','パスワードを変更しました。');
     }
-
-    // プロフィールアイコン用
-
-    // public function edit($id) {
-        //     $user = Auth::user();
-        //     return view('user.edit', ['user' => $user]);
-        // }
-    
-        // public function update($id, UserRequest $request) {
-        //     $user = Auth::user();
-        //     $form = $request->all();
-    
-        //     $profileImage = $request->file('profile_image');
-        //     if ($profileImage != null) {
-        //         $form['profile_image'] = $this->saveProfileImage($profileImage, $id); // return file name
-        //     }
-    
-        //     unset($form['_token']);
-        //     unset($form['_method']);
-        //     $user->fill($form)->save();
-        //     return redirect('/home');
-        // }
-    
-        // private function saveProfileImage($image, $id) {
-        //     // get instance
-        //     $img = \Image::make($image);
-        //     // resize
-        //     $img->fit(100, 100, function($constraint){
-        //         $constraint->upsize(); 
-        //     });
-        //     // save
-        //     $file_name = 'profile_'.$id.'.'.$image->getClientOriginalExtension();
-        //     $save_path = 'public/profiles/'.$file_name;
-        //     Storage::put($save_path, (string) $img->encode());
-        //     // return file name
-        //     return $file_name;
-        // }
 }
