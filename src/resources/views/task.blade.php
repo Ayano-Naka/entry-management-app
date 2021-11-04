@@ -46,6 +46,6 @@
     </div>
     <div class="paging">
         {{ $tasks->links() }}
-</div>
+    </div>
 
 @endsection
