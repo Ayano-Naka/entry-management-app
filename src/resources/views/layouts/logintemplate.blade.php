@@ -12,6 +12,7 @@
         <!-- CSS -->
         <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
         <link href="css/styles.css" rel="stylesheet">
+        <link href="../css/styles.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     </head>
     <body>
