@@ -155,9 +155,12 @@ aside{
 /* search */
 
 .search-wrapper{
+    margin: 5rem 2rem 3rem 2rem;
+}
+
+.search-wrapper form{
     display: flex;
     justify-content: space-around;
-    margin: 5rem 2rem 3rem 2rem;
 }
 
 
@@ -233,6 +236,11 @@ aside{
 
 #latest-list{
     margin: 5rem 0 10rem 0;
+}
+
+#latest-list p{
+    text-align: end;
+    margin: 0 4rem 1rem 0;
 }
 
 .button-wrapper{
