@@ -1,7 +1,6 @@
 @extends('layouts.template')
 
 @section('content')
-
 <!-- title -->
 <div class="title">
     <h1>検索結果</h1>
@@ -13,7 +12,13 @@
     <table>
     @foreach($posts as $post)
         <tr>
-            <td>{{ $post->limit }}</td><td>{{ $post->prefName }}</td><td>{{ $post->company }}</td><td>{{ $post->StageName }}</td><td>{{ $post->job }}</td><td>{{ $post->officer }}</td><td><a href="{{ action('PostController@show', $post->id) }}">詳細</a></td>
+            <td>{{ $post->limit }}</td>
+            <td>{{ $post->prefName }}</td>
+            <td>{{ $post->company }}</td>
+            <td>{{ $post->StageName }}</td>
+            <td>{{ $post->job }}</td>
+            <td>{{ $post->officer }}</td>
+            <td><a href="{{ action('PostController@show', $post->id) }}">詳細</a></td>
         </tr>
     @endforeach
     </table>
@@ -21,7 +26,4 @@
         {{ $posts->appends(request()->input())->links() }}
     </div>
 </section>
-
-
-
 @endsection

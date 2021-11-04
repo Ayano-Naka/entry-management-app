@@ -22,7 +22,7 @@ class PostController extends Controller
     }
 
     public function index(){
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
 
         $this->posts = new Post();
         $first = $this->posts->getCountOne();
@@ -95,7 +95,6 @@ class PostController extends Controller
     }
 
     public function search(Request $request){
-
         $query = Post::query();
 
         $keyword = $request->keyword;
@@ -103,20 +102,25 @@ class PostController extends Controller
         $stage_id =$request->stage_id;
 
         if(!empty($pref_id)){
-            $query->where('pref_id',$pref_id)->get();
+            $query->where(function($query) use($pref_id){
+                $query->where('pref_id', $pref_id);
+            });
         }
 
         if(!empty($stage_id)){
-            $query->where('stage_id',$stage_id)->get();
+            $query->where(function($query) use($stage_id){
+                $query->where('stage_id', $stage_id);
+            });
         }
 
         if(!empty($keyword)){
-            $query->where('company','like','%' . $keyword. '%')
-                    ->orwhere('city','like','%' . $keyword. '%')
-                    ->orwhere('job','like','%' . $keyword. '%')
-                    ->orwhere('officer','like','%' . $keyword. '%')
-                    ->orwhere('memo','like','%' . $keyword. '%')
-                    ->get();
+            $query->where(function($query) use($keyword){
+                $query->Where('company','like','%' . $keyword. '%')
+                    ->orWhere('city','like','%' . $keyword. '%')
+                    ->orWhere('job','like','%' . $keyword. '%')
+                    ->orWhere('officer','like','%' . $keyword. '%')
+                    ->orWhere('memo','like','%' . $keyword. '%');
+            });
         }
 
         $posts = $query->paginate(5);
