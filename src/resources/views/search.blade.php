@@ -9,7 +9,7 @@
 
 <!-- list -->
 <section id="latest-list">
-    <p>全{{$posts->count()}}件</p>
+    <p>全{{$posts->total()}}件</p>
     <table>
     @foreach($posts as $post)
         <tr>
