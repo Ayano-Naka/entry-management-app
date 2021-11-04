@@ -9,30 +9,17 @@
 
 <!-- list -->
 <section id="latest-list">
+    <p>全{{$posts->count()}}件</p>
     <table>
+    @foreach($posts as $post)
         <tr>
-            <td>日付</td><td>エリア</td><td>会社名</td><td>選考状況</td><td>職種</td><td>担当者名</td><td><button>詳細</button></td>
+            <td>{{ $post->limit }}</td><td>{{ $post->prefName }}</td><td>{{ $post->company }}</td><td>{{ $post->StageName }}</td><td>{{ $post->job }}</td><td>{{ $post->officer }}</td><td><a href="{{ action('PostController@show', $post->id) }}">詳細</a></td>
         </tr>
-        <tr>
-            <td>日付</td><td>エリア</td><td>会社名</td><td>選考状況</td><td>職種</td><td>担当者名</td><td><button>詳細</button></td>
-        </tr>
-        <tr>
-            <td>日付</td><td>エリア</td><td>会社名</td><td>選考状況</td><td>職種</td><td>担当者名</td><td><button>詳細</button></td>
-        </tr>
-        <tr>
-            <td>日付</td><td>エリア</td><td>会社名</td><td>選考状況</td><td>職種</td><td>担当者名</td><td><button>詳細</button></td>
-        </tr>
-        <tr>
-            <td>日付</td><td>エリア</td><td>会社名</td><td>選考状況</td><td>職種</td><td>担当者名</td><td><button>詳細</button></td>
-        </tr>
+    @endforeach
     </table>
-    <ul class="paging">
-        <li><button><</button></li>
-        <li><button>1</button></li>
-        <li><button>2</button></li>
-        <li><button>3</button></li>
-        <li><button>></button></li>
-    </ul>
+    <div class="paging">
+        {{ $posts->appends(request()->input())->links() }}
+    </div>
 </section>
 
 

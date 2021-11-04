@@ -30,9 +30,12 @@ class PostController extends Controller
         $third = $this->posts->getCountThree();
         $fourth = $this->posts->getCountFour();
         $fifth = $this->posts->getCountFive();
-        
+
+        $prefs = config('pref');
+        $stages = config('stage');
+
         return view('entry',
-        compact('posts','first','second','third','fourth','fifth')
+        compact('posts','first','second','third','fourth','fifth','prefs', 'stages')
     );
     }
 
@@ -90,4 +93,35 @@ class PostController extends Controller
         Post::find($request->id)->delete();
             return redirect('/');
     }
+
+    public function search(Request $request){
+
+        $query = Post::query();
+
+        $keyword = $request->keyword;
+        $pref_id = $request->pref_id;
+        $stage_id =$request->stage_id;
+
+        if(!empty($pref_id)){
+            $query->where('pref_id',$pref_id)->get();
+        }
+
+        if(!empty($stage_id)){
+            $query->where('stage_id',$stage_id)->get();
+        }
+
+        if(!empty($keyword)){
+            $query->where('company','like','%' . $keyword. '%')
+                    ->orwhere('city','like','%' . $keyword. '%')
+                    ->orwhere('job','like','%' . $keyword. '%')
+                    ->orwhere('officer','like','%' . $keyword. '%')
+                    ->orwhere('memo','like','%' . $keyword. '%')
+                    ->get();
+        }
+
+        $posts = $query->paginate(5);
+
+        return view('search',compact('posts','keyword','pref_id','stage_id'));
+    }
+
 }

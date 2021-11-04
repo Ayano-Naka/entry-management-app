@@ -52,11 +52,13 @@ Route::get('/company/{id}','PostController@show')->name('posts.show');
 
 Route::post('/company/{id}','PostController@delete');
 
+Route::get('/search','PostController@search')->name('posts.search');
 
+// Route::get('/search','PostController@showSearch');
 
-Route::get('/search-result',function(){
-    return view('search');
-});
+// Route::get('/search-result',function(){
+//     return view('search');
+// });
 
 Route::get('/schedule',function(){
     return view('schedule');
