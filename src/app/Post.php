@@ -17,7 +17,7 @@ class Post extends Model
         return config('stage.'.$this->stage_id);
     }
 
-    public function getCount(){
+    public function getCount($stage_id){
         return DB::table('posts')
         ->select('stage_id')
         ->where('stage_id',$stage_id)
