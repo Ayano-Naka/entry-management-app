@@ -42,8 +42,7 @@ html {
 aside{
     width: 20%;
     background-color: #ebebeb;
-    padding-bottom: 10000px;
-    margin-bottom: -10000px;
+    padding-bottom: calc(100vh - 100px);
 }
 
 .side-bar{
