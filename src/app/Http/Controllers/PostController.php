@@ -21,8 +21,7 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+    public function index(Request $request){
 
         $this->posts = new Post();
         $first = $this->posts->getCount(1);
@@ -34,8 +33,38 @@ class PostController extends Controller
         $prefs = config('pref');
         $stages = config('stage');
 
+        $query = Post::query();
+
+        $keyword = $request->keyword;
+        $pref_id = $request->pref_id;
+        $stage_id =$request->stage_id;
+
+        if(!empty($pref_id)){
+            $query->where(function($query) use($pref_id){
+                $query->where('pref_id', $pref_id);
+            });
+        }
+
+        if(!empty($stage_id)){
+            $query->where(function($query) use($stage_id){
+                $query->where('stage_id', $stage_id);
+            });
+        }
+
+        if(!empty($keyword)){
+            $query->where(function($query) use($keyword){
+                $query->Where('company','like','%' . $keyword. '%')
+                    ->orWhere('city','like','%' . $keyword. '%')
+                    ->orWhere('job','like','%' . $keyword. '%')
+                    ->orWhere('officer','like','%' . $keyword. '%')
+                    ->orWhere('memo','like','%' . $keyword. '%');
+            });
+        }
+
+        $posts = $query->paginate(5);
+
         return view('entry',
-        compact('posts','first','second','third','fourth','fifth','prefs', 'stages')
+        compact('posts','first','second','third','fourth','fifth','prefs', 'stages','stage_id','keyword','pref_id')
     );
     }
 
@@ -77,40 +106,6 @@ class PostController extends Controller
     public function delete(Request $request){
         Post::find($request->id)->delete();
             return redirect('/');
-    }
-
-    public function search(Request $request){
-        $query = Post::query();
-
-        $keyword = $request->keyword;
-        $pref_id = $request->pref_id;
-        $stage_id =$request->stage_id;
-
-        if(!empty($pref_id)){
-            $query->where(function($query) use($pref_id){
-                $query->where('pref_id', $pref_id);
-            });
-        }
-
-        if(!empty($stage_id)){
-            $query->where(function($query) use($stage_id){
-                $query->where('stage_id', $stage_id);
-            });
-        }
-
-        if(!empty($keyword)){
-            $query->where(function($query) use($keyword){
-                $query->Where('company','like','%' . $keyword. '%')
-                    ->orWhere('city','like','%' . $keyword. '%')
-                    ->orWhere('job','like','%' . $keyword. '%')
-                    ->orWhere('officer','like','%' . $keyword. '%')
-                    ->orWhere('memo','like','%' . $keyword. '%');
-            });
-        }
-
-        $posts = $query->paginate(5);
-
-        return view('search',compact('posts','keyword','pref_id','stage_id'));
     }
 
 }

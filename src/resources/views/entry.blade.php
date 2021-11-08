@@ -82,13 +82,17 @@
         <div class="button-wrapper">
             <a href="/post"><i class="material-icons">add_circle_outline</i></a>
         </div>
+        <p>全{{$posts->total()}}件</p>
         <table>
             @foreach($posts as $post)
             <tr>
                 <td>{{ $post->limit }}</td><td>{{ $post->prefName }}</td><td>{{ $post->company }}</td><td>{{ $post->StageName }}</td><td>{{ $post->job }}</td><td>{{ $post->officer }}</td><td><a href="{{ action('PostController@show', $post->id) }}">詳細</a></td>
             </tr>
             @endforeach
-            </table>
+        </table>
+            <div class="paging">
+            {{ $posts->appends(request()->input())->links() }}
+            </div>
     </section>
     
 @endsection
