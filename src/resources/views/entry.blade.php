@@ -84,9 +84,30 @@
         </div>
         <p>全{{$posts->total()}}件</p>
         <table>
+            <tr>
+                <td>面接予定日</td>
+                <td>住所</td>
+                <td>会社名</td>
+                <td>選考状況</td>
+                <td>職種</td>
+                <td>担当者</td>
+                <td>詳細ページ</td>
+            </tr>
             @foreach($posts as $post)
             <tr>
-                <td>{{ $post->limit }}</td><td>{{ $post->prefName }}</td><td>{{ $post->company }}</td><td>{{ $post->StageName }}</td><td>{{ $post->job }}</td><td>{{ $post->officer }}</td><td><a href="{{ action('PostController@show', $post->id) }}">詳細</a></td>
+                <td>{{ $post->limit }}
+                    @if($post->limit == null)
+                    未定
+                    @endif
+                </td>
+                <td>{{ $post->prefName }}</td>
+                <td>{{ $post->company }}</td>
+                <td>{{ $post->StageName }}</td>
+                <td>{{ $post->job }}</td>
+                <td>{{ $post->officer }}</td>
+                <td>
+                    <a href="{{ action('PostController@show', $post->id) }}">詳細</a>
+                </td>
             </tr>
             @endforeach
         </table>
