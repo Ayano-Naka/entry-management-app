@@ -8,13 +8,9 @@
             <div class="card-header">
                 <h2>{{ $calendar->getTitle() }}</h2>
             </div>
-            <!-- <div class="card-body">
-                {!! $calendar->render() !!}
-            </div>  -->
+
         </div>
     </div>
-    <a href="/calendar/redirect"><button>Googleでログイン</button></a>
-    <form action="" method="">
     <div class="button-wrapper">
             <a href="/schedule">
                 <i class="material-icons" style="margin-right: 8rem;">add_circle_outline</i>

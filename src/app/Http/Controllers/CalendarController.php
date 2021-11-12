@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Google_Client;
+use Carbon\Carbon;
 use Google_Service_Calendar;
 use App\Calendar\CalendarView;
 use Google_Service_Calendar_Event;
@@ -20,35 +21,32 @@ class CalendarController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request, Google_Service_Calendar_Event $event){
 
         $client = $this->getClient();
         $service = new Google_Service_Calendar($client);
 
-        $calendarId = env('GOOGLE_CALENDAR_ID');
         $calendarId = "phhjeji2uirevrqqmk91i8jiho@group.calendar.google.com";
 
         $event = new Google_Service_Calendar_Event(array(
             //タイトル
-            'summary' => 'test',
+            'summary' => $request->input('summary'),
+            'location' => $request->input('location'),
+            'description' => $request->input('description'),
+
             'start' => array(
                 // 開始日時
-                'dateTime' => '2021-11-08T11:00:00+09:00',
+                'dateTime' => Carbon::parse($request->input('start'))->format(DATE_RFC3339),
                 'timeZone' => 'Asia/Tokyo',
             ),
             'end' => array(
                 // 終了日時
-                'dateTime' => '2021-11-08T12:00:00+09:00',
+                'dateTime' => Carbon::parse($request->input('end'))->format(DATE_RFC3339),
                 'timeZone' => 'Asia/Tokyo',
             ),
-
-            'location' => "place",
-
-            'description' =>"memo"
         ));
 
         $event = $service->events->insert($calendarId, $event);
-        echo "イベントを追加しました";
 
         $calendar = new CalendarView(time());
 
@@ -72,12 +70,12 @@ class CalendarController extends Controller
 
     }
 
-    // public function show(){
+    public function show(){
         
-	// 	$calendar = new CalendarView(time());
+		$calendar = new CalendarView(time());
 
-	// 	return view('calendar', 
-    //     ["calendar" => $calendar]
-    //     );
-	// }
+		return view('calendar', 
+        ["calendar" => $calendar]
+        );
+	}
 }
