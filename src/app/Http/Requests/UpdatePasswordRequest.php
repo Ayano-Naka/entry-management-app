@@ -35,4 +35,11 @@ class UpdatePasswordRequest extends FormRequest
             'new-password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'new-password' => '新しいパスワード'
+        ];
+    }
 }
