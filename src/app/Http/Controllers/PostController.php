@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Http\Requests\CreatePost;
 
 
 class PostController extends Controller
@@ -61,14 +62,14 @@ class PostController extends Controller
             });
         }
 
-        $posts = $query->paginate(5);
+        $posts = $query->orderBy('id','desc')->paginate(4);
 
         return view('entry',
         compact('posts','first','second','third','fourth','fifth','prefs', 'stages','stage_id','keyword','pref_id')
     );
     }
 
-    public function create(Request $request){
+    public function create(CreatePost $request){
         Post::create($request->all());
         return redirect('/');
     }
@@ -101,6 +102,11 @@ class PostController extends Controller
         ['user' => Auth::user() ],
         ['post' => $post]
     );
+    }
+
+    public function showDelete($id){
+        $post = Post::find($id);
+        return view('companydelete',compact('post'));
     }
 
     public function delete(Request $request){

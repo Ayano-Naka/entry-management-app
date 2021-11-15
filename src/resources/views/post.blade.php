@@ -7,6 +7,16 @@
     <h1>新規登録</h1>
 </div>
 
+@if($errors->any())
+<div class="container mt-2">
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $message)
+            <li>{{ $message }}</li>
+        @endforeach
+    </div>
+</div>
+@endif
+
 <!-- add to list -->
 <div class="add-wrapper">
     <form action="{{ url('/post')}}" method="POST">
