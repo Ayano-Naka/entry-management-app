@@ -18,12 +18,18 @@ class UserController extends Controller
         $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->email_verified_at = null;
+
+        // if (!$user->email == $request->email){
+        //     $user->email_verified_at = null;
+        // }
 
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('public');
             $user->profile_image = basename($path);
             }
             $user->save();
+            $user->sendEmailVerificationNotification();
             return redirect('user/setting');
     }
 
