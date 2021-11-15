@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateTask;
 
 class TaskController extends Controller
 {
@@ -27,7 +28,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function create(Request $request){
+    public function create(CreateTask $request){
         $task = new Task();
         $task->task = $request->task;
         $task->limit = $request->limit;

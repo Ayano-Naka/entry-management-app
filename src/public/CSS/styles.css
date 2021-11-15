@@ -40,6 +40,10 @@ html {
     overflow:hidden;
 }
 
+.alert.alert-danger li{
+    list-style: none;
+}
+
 /* menu */
 
 aside{
@@ -312,6 +316,14 @@ h1{
 
 .buttons a{
     background: #346dfe;
+    color: #fff;
+    padding: 1rem;
+    transition: all 1.0s;
+    text-decoration: none;
+}
+
+.buttons .delete a{
+    background: #fe345b;
     color: #fff;
     padding: 1rem;
     transition: all 1.0s;

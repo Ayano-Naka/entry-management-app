@@ -6,6 +6,16 @@
     <h1>タスクリスト</h1>
 </div>
 
+@if($errors->any())
+<div class="container mt-2">
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $message)
+            <li>{{ $message }}</li>
+        @endforeach
+    </div>
+</div>
+@endif
+
 <form action="{{ url('/task')}}" method="POST">
     @csrf
     <div class="todo-wrapper">
