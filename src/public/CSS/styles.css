@@ -781,12 +781,22 @@ a.btn.btn-link:hover{
 
 .home-wrapper p a{
     color: #02a3e3;
-    text-decoration: none;
+
 }
 
 .home-wrapper p a:hover{
     color: #046edc;
 }
+
+.d-inline button{
+    color: #02a3e3;
+    text-decoration: underline;
+}
+
+.d-inline button:hover{
+    color: #046edc;
+}
+
 
 .dropup,
 .dropright,
