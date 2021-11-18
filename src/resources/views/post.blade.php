@@ -7,16 +7,6 @@
     <h1>新規登録</h1>
 </div>
 
-@if($errors->any())
-<div class="container mt-2">
-    <div class="alert alert-danger">
-        @foreach ($errors->all() as $message)
-            <li>{{ $message }}</li>
-        @endforeach
-    </div>
-</div>
-@endif
-
 <!-- add to list -->
 <div class="add-wrapper">
     <form action="{{ url('/post')}}" method="POST">
@@ -25,45 +15,57 @@
         <tr>
             <td class="item">会社名</td>
             <td>
-            <div class="text-box">
-                <input type="text" name="company" id="company">
-            </div>
+                <div class="text-box">
+                    <input type="text" name="company" id="company">
+                </div>
+                @error('company')
+                    <p class="error-item">{{ $message }}</p>
+                @enderror
             </td>
         </tr>
         <tr>
             <td class="item">住所</td>
             <td>
-            <div class="pull-down">
-            <select name="pref_id"　id="pref_id" type="text" class="form-control"> 
-            @foreach($prefs as $key => $score)
-                <option value="" disabled selected hidden>都道府県</option>  
-                    <option value="{{ $key }}">{{ $score }}</option>
-            @endforeach
-            </select>
-            </div>
-            <div class="text-box">
-                <input type="text" name="city" placeholder="市町村・番地">
-            </div>
+                <div class="pull-down">
+                    <select name="pref_id"　id="pref_id" type="text" class="form-control"> 
+                        @foreach($prefs as $key => $score)
+                            <option value="" disabled selected hidden>都道府県</option>  
+                            <option value="{{ $key }}">{{ $score }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @error('pref_id')
+                    <p class="error-item">{{ $message }}</p>
+                @enderror
+                <div class="text-box">
+                    <input type="text" name="city" placeholder="市町村・番地">
+                </div>
+                @error('city')
+                    <p class="error-item">{{ $message }}</p>
+                @enderror
             </td>
         </tr>
         <tr>
             <td class="item">選考状況</td>
             <td>
-            <div class="pull-down">
-            <select name="stage_id" id="stage_id" type="text">
-            @foreach($stages as $index => $name)
-                <option value="{{ $index }}">{{ $name }}</option>
-            @endforeach
-            </select>
-            </div>
+                <div class="pull-down">
+                <select name="stage_id" id="stage_id" type="text">
+                    @foreach($stages as $index => $name)
+                        <option value="{{ $index }}">{{ $name }}</option>
+                    @endforeach
+                </select>
+                </div>
             </td>
         </tr>
         <tr>
             <td class="item">職種</td>
             <td>
-            <div class="text-box">
-                <input type="text" name="job">
-            </div>
+                <div class="text-box">
+                    <input type="text" name="job">
+                </div>
+                @error('job')
+                    <p class="error-item">{{ $message }}</p>
+                @enderror
             </td>
         </tr>
         <tr>
@@ -75,17 +77,20 @@
         <tr>
             <td class="item">担当者</td>
             <td>
-            <div class="text-box">
-                <input type="text" name="officer">
+                <div class="text-box">
+                    <input type="text" name="officer">
+                </div>
+                @error('officer')
+                    <p class="error-item">{{ $message }}</p>
+                @enderror
             </td>
-            </div>
         </tr>
         <tr>
             <td class="item">メモ</td>
             <td>
-            <div class="memo-box">    
-            <textarea name="memo" placeholder="メモを入力"></textarea>
-            </div>
+                <div class="memo-box">    
+                    <textarea name="memo" placeholder="メモを入力"></textarea>
+                </div>
             </td>
         </tr>
     </table>

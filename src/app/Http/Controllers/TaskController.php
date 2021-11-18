@@ -43,7 +43,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function edit(Request $request){
+    public function edit(CreateTask $request){
         Task::find($request->id)->update([
             'task' => $request->task,
             'limit'=>$request->limit

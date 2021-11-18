@@ -88,7 +88,7 @@ class PostController extends Controller
     );
     }
 
-    public function edit(Request $request){
+    public function edit(CreatePost $request){
         $post_id = $request->id;
         Post::find($post_id)->update(
             $request->all()
