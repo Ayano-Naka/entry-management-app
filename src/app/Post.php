@@ -26,4 +26,8 @@ class Post extends Model
         ->get();
     }
 
+    public function user($query){
+        return $this->belongsTo('App\User');
+    }
+
 }

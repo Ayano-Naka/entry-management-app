@@ -34,7 +34,7 @@ class PostController extends Controller
         $prefs = config('pref');
         $stages = config('stage');
 
-        $query = Post::query();
+        $query = Post::query()->where('user_id', 5);
 
         $keyword = $request->keyword;
         $pref_id = $request->pref_id;

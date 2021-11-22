@@ -10,6 +10,7 @@
 <!-- add to list -->
 <div class="add-wrapper">
     <form action="{{ url('/post')}}" method="POST">
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
     @csrf
     <table>
         <tr>
