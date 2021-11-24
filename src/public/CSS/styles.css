@@ -319,7 +319,7 @@ h1{
     text-align: center;
 }
 
-.buttons a{
+.buttons .edit a{
     background: #346dfe;
     color: #fff;
     padding: 1rem;
@@ -333,6 +333,15 @@ h1{
     padding: 1rem;
     transition: all 1.0s;
     text-decoration: none;
+}
+
+.buttons .cancel a{
+    background: #38a86e;
+    color: #fff;
+    padding: 1rem;
+    transition: all 1.0s;
+    text-decoration: none;
+    margin-left: 10px;
 }
 
 .buttons input[type="submit"]{

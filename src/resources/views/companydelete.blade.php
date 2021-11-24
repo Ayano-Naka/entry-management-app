@@ -8,6 +8,7 @@
     <div class="buttons">
     下記会社情報を削除しますか？
         <input type="submit" name="delete" value="削除">
+        <span class="cancel"><a href="/company/{{$post->id}}">キャンセル</a></span>
     </div>
 </form>
 
