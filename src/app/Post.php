@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -21,13 +22,24 @@ class Post extends Model
         return DB::table('posts')
         ->select('stage_id')
         ->where('stage_id',$stage_id)
+        ->where('user_id', Auth::id())
         ->selectRaw('COUNT(stage_id) as count_stageId')
         ->groupBy('stage_id')
         ->get();
     }
 
+<<<<<<< Updated upstream
     public function user($query){
         return $this->belongsTo('App\User');
     }
 
+=======
+<<<<<<< Updated upstream
+=======
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 }

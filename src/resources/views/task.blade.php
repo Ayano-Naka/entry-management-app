@@ -7,6 +7,7 @@
 </div>
 
 <form action="{{ url('/task')}}" method="POST">
+    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
     @csrf
     <div class="todo-wrapper">
         <table>

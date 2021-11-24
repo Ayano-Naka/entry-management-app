@@ -22,7 +22,9 @@ class TaskController extends Controller
     }
 
     public function index(){
-        $tasks = Task::orderBy('id','desc')->paginate(5);
+        $tasks = Task::where('user_id', Auth::id())
+            ->orderBy('id','desc')
+            ->paginate(5);
         return view('task',[
             "tasks" => $tasks
         ]);
@@ -30,6 +32,7 @@ class TaskController extends Controller
 
     public function create(CreateTask $request){
         $task = new Task();
+        $task->user_id = auth()->id();
         $task->task = $request->task;
         $task->limit = $request->limit;
         $task -> save();
