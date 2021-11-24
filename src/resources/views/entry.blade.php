@@ -1,6 +1,12 @@
 @extends('layouts.template')
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
+
     <!-- main -->
     <div class="main-visual">
         <section class="shapes-group">
