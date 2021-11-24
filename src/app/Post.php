@@ -28,18 +28,8 @@ class Post extends Model
         ->get();
     }
 
-<<<<<<< Updated upstream
-    public function user($query){
-        return $this->belongsTo('App\User');
-    }
-
-=======
-<<<<<<< Updated upstream
-=======
     public function user(){
         return $this->belongsTo('App\User');
     }
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 }

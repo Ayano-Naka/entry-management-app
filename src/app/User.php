@@ -42,11 +42,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification(){
         $this->notify(new VerifyEmail);
     }
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
     public function sendPasswordResetNotification($token)
     {
@@ -54,14 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function posts(){
-    return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post');
     }
-<<<<<<< Updated upstream
-=======
 
     public function tasks(){
         return $this->hasMany('App\Task');
-        }
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+    }
+
 }

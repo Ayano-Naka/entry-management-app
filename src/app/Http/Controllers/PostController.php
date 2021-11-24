@@ -34,15 +34,7 @@ class PostController extends Controller
         $prefs = config('pref');
         $stages = config('stage');
 
-<<<<<<< Updated upstream
-        $query = Post::query()->where('user_id', 5);
-=======
-<<<<<<< Updated upstream
-        $query = Post::query();
-=======
         $query = Post::query()->where('user_id', Auth::id());
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
         $keyword = $request->keyword;
         $pref_id = $request->pref_id;
