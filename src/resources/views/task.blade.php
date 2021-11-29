@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-
+<div id="task_top">
 <div class="title">
     <h1>タスクリスト</h1>
 </div>
@@ -64,5 +64,7 @@
     <div class="paging">
         {{ $tasks->links() }}
     </div>
+</div>
 
+    <script src="{{ asset('js/task.js') }}" defer></script>
 @endsection
