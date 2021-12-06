@@ -10,7 +10,7 @@ new Vue({
     },
     methods:{
         fetchTasks:function(){
-            axios.get('/task').then((res)=>{
+            axios.get('/task/getData').then((res)=>{
                 this.tasks = res.data
             });
         },

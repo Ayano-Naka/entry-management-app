@@ -53,4 +53,9 @@ class TaskController extends Controller
         $tasks = User::find(Auth::id())->tasks;
         return $tasks;
     }
+
+    public function getData(){
+        $tasks = Task::where('user_id',Auth::id())->get();
+        return response()->json($tasks);
+    }
 }
