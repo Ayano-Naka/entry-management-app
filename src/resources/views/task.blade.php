@@ -42,7 +42,7 @@
                     @{{task.task}}
                 </td>
                 <td v-else>
-                    <input type="text" v-bind:value="task.task" v-on:blur="updateTask($event, task_id)">
+                    <input type="text" v-model="task.task" v-on:blur="updateTask(task)">
                 </td>
                 <td v-if="!isEditLimit" v-on:dblclick="isEditLimit = true" style="border-top: 1px solid #bbbbbb;">
                     @{{task.limit}}

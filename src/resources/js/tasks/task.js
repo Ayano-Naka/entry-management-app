@@ -10,7 +10,7 @@ new Vue({
     },
     methods:{
         fetchTasks:function(){
-            axios.get('/task').then((res)=>{
+            axios.get('/task/getData').then((res)=>{
                 this.tasks = res.data
             });
         },
@@ -31,14 +31,17 @@ new Vue({
                 this.tasks = res.data;
             });
         },
-        updateTask : function(task_id){
-            axios.post('/task/edi',{
-                id: task_id
-            }).then((response) => {
+        updateTask : function(task){
+            axios.post('/task/edit',{
+                id: task.id,
+                task: task.task,
+                limit: task.limit,
+            }).then((res) => {
+                console.log(res);
                 this.isEditTask = false
                 this.isEditLimit = false
                 this.tasks = res.data;
-            　});
+            });
         },
     },
     created() {

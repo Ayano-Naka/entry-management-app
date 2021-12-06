@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/task', 'TaskController@getTasks');
+Route::get('/task/getData', 'TaskController@getData');
 
 Route::post('/task', 'TaskController@addTask');
 
 Route::post('/task/del', 'TaskController@deleteTask');
 
-Route::post('/task/edi','TaskController@editTask');
+Route::post('/task/edit','TaskController@editTask');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
