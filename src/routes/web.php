@@ -15,15 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/task','TaskController@index');
+Route::get('/task', 'TaskController@getTasks');
 
-Route::post('/task','TaskController@create');
+Route::post('/task', 'TaskController@addTask');
 
-Route::get('/edit/{id}','TaskController@showEditForm');
+Route::post('/task/del', 'TaskController@deleteTask');
 
-Route::post('/edit', 'TaskController@edit');
-
-Route::post('/task/{id}', 'TaskController@delete');
+Route::post('/task/edi','TaskController@editTask');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
