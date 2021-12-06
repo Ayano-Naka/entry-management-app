@@ -46,12 +46,18 @@ class TaskController extends Controller
     }
 
     public function editTask(Request $request){
-        $task = Task::find($request->id)->update([
+        Task::find($request->id)->update([
             'task' => $request->task,
-            'limit'=>$request->limit
+            'limit' => $request->limit
         ]);
-        $tasks = User::find(Auth::id())->tasks;
-        return $tasks;
+        $tasks = Task::where('user_id', Auth::id())->get();
+        return response()->json($tasks);
+    }
+
+    public function getData() {
+        $task = Task::all();
+
+        return response()->json($task);
     }
 
     public function getData(){

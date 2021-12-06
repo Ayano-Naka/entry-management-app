@@ -22,7 +22,7 @@ Route::post('/task', 'TaskController@addTask');
 
 Route::post('/task/del', 'TaskController@deleteTask');
 
-Route::post('/task/edi','TaskController@editTask');
+Route::post('/task/edit','TaskController@editTask');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

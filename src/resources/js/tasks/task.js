@@ -31,14 +31,17 @@ new Vue({
                 this.tasks = res.data;
             });
         },
-        updateTask : function(task_id){
-            axios.post('/task/edi',{
-                id: task_id
-            }).then((response) => {
+        updateTask : function(task){
+            axios.post('/task/edit',{
+                id: task.id,
+                task: task.task,
+                limit: task.limit,
+            }).then((res) => {
+                console.log(res);
                 this.isEditTask = false
                 this.isEditLimit = false
                 this.tasks = res.data;
-            　});
+            });
         },
     },
     created() {
