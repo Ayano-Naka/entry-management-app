@@ -48,7 +48,7 @@
                     @{{task.limit}}
                 </td>
                 <td v-else>
-                    <input type="text" v-bind:value="task.limit" v-on:blur="updateLimit($event, task_id)">
+                    <input type="text" v-model="task.limit" v-on:blur="updateTask(task)">
                 </td>
                 <td class="delete" style="border-top: 1px solid #bbbbbb;">
                     <button @click="deleteTask(task.id)">削除</button>
