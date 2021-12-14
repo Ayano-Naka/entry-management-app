@@ -65,9 +65,9 @@
             </div>
         <p class="search-parts">×</p>
         <div class="pull-down">
-            <select name="stage_id" id="stage_id" v-model="searchQuery">
-                <option value="" disabled selected hidden>選考状況</option> 
-                <option v-for="stage in stages" :value="stage">@{{ stage }}</option>
+            <select name="stage_id" id="stage_id" v-model="stage_search">
+                <option value="0" disabled selected hidden>選考状況</option> 
+                <option v-for="(stage,index) in stages" :value="index">@{{ stage }}</option>
             </select>
         </div>
         <p class="search-parts">×</p>

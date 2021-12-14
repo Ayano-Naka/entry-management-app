@@ -7,7 +7,8 @@ new Vue({
             isCalculating: false,
             prefs: [],
             stages:[],
-            area_search:0
+            area_search:0,
+            stage_search:0
             },
             methods:{
                 fetchPosts:function(){
@@ -44,6 +45,12 @@ new Vue({
                     return this.posts.filter(post => {
                         if (self.area_search != 0){
                             if(self.area_search  != post.pref_id){
+                                return false;
+                            }
+                            return true
+                        }
+                        if(self.stage_search != 0){
+                            if(self.stage_search != post.stage_id){
                                 return false;
                             }
                             return true
