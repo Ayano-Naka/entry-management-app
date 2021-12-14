@@ -35,17 +35,24 @@ Route::middleware('verified')->group(function () {
     });
 });
 
-Route::get('/', 'PostController@index')->name('posts.search');
+
+
+
+Route::get('/', 'PostController@getPosts');
+Route::get('/getData', 'PostController@getData');
+Route::get('/getPref','PostController@getPref');
+
+Route::get('/getStage','PostController@getStage');
+
+Route::get('/post', 'PostController@new')->name('pullDown');
 
 Route::post('/post','PostController@create');
 
-Route::get('/post', 'PostController@new')->name('pullDown');
+Route::get('/company/{id}','PostController@show')->name('posts.show');
 
 Route::get('/postedit/{id}', 'PostController@showEdit')->name('posts.edit');
 
 Route::post('/postedit/{id}', 'PostController@edit');
-
-Route::get('/company/{id}','PostController@show')->name('posts.show');
 
 Route::get('/postdel/{id}', 'PostController@showDelete');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Http\Requests\CreatePost;
@@ -22,7 +23,14 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request){
+    public function getData(){
+        $posts = Post::where('user_id',Auth::id())
+        ->orderBy('id','desc')
+        ->get();
+        return response()->json($posts);
+    }
+
+    public function getPosts(){
 
         $this->posts = new Post();
         $first = $this->posts->getCount(1);
@@ -31,42 +39,29 @@ class PostController extends Controller
         $fourth = $this->posts->getCount(4);
         $fifth = $this->posts->getCount(5);
 
+        $posts = Post::where('user_id',Auth::id())->get();
+
         $prefs = config('pref');
         $stages = config('stage');
 
-        $query = Post::query()->where('user_id', Auth::id());
+        return view('entry', 
+        compact('posts','prefs','first','second','third','fourth','fifth'));
+    }
 
-        $keyword = $request->keyword;
-        $pref_id = $request->pref_id;
-        $stage_id =$request->stage_id;
+    public function getPref(){
+        $prefs = config('pref');
+        return response()->json($prefs);
+    }
 
-        if(!empty($pref_id)){
-            $query->where(function($query) use($pref_id){
-                $query->where('pref_id', $pref_id);
-            });
-        }
+    public function getStage(){
+        $stages = config('stage');
+        return response()->json($stages);
+    }
 
-        if(!empty($stage_id)){
-            $query->where(function($query) use($stage_id){
-                $query->where('stage_id', $stage_id);
-            });
-        }
-
-        if(!empty($keyword)){
-            $query->where(function($query) use($keyword){
-                $query->Where('company','like','%' . $keyword. '%')
-                    ->orWhere('city','like','%' . $keyword. '%')
-                    ->orWhere('job','like','%' . $keyword. '%')
-                    ->orWhere('officer','like','%' . $keyword. '%')
-                    ->orWhere('memo','like','%' . $keyword. '%');
-            });
-        }
-
-        $posts = $query->orderBy('id','desc')->paginate(4);
-
-        return view('entry',
-        compact('posts','first','second','third','fourth','fifth','prefs', 'stages','stage_id','keyword','pref_id')
-    );
+    public function new(){
+        $prefs = config('pref');
+        $stages = config('stage');
+        return view('/post', compact('prefs', 'stages'));
     }
 
     public function create(CreatePost $request){
@@ -74,10 +69,12 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    public function new(){
-        $prefs = config('pref');
-        $stages = config('stage');
-        return view('/post', compact('prefs', 'stages'));
+    public function show(int $id){
+        $post = Post::find($id);
+        return view('company',
+        ['user' => Auth::user() ],
+        ['post' => $post]
+    );
     }
 
     public function showEdit(int $id){
@@ -94,14 +91,6 @@ class PostController extends Controller
             $request->all()
         );
         return redirect("/company/{$post_id}");
-    }
-
-    public function show(int $id){
-        $post = Post::find($id);
-        return view('company',
-        ['user' => Auth::user() ],
-        ['post' => $post]
-    );
     }
 
     public function showDelete($id){

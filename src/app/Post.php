@@ -10,6 +10,8 @@ class Post extends Model
 {
     protected $guarded = ['id']; 
 
+    protected $appends = ['prefName','stageName'];
+
     public function getPrefNameAttribute(){
         return config('pref.'.$this->pref_id);
     }
