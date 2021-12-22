@@ -80,7 +80,18 @@
             <div class="button-wrapper">
                 <a href="/post"><i class="material-icons">add_circle_outline</i></a>
             </div>
-            <p>全何件</p>
+                <p>全 @{{total}} 件中 @{{from}} 〜 @{{to}} 件表示</p>
+                <div class="paging">
+                    <ul class="pagination">
+                        <li :class="{disabled: current_page <= 1}"><a href="#" @click="change(1)">&laquo;</a></li>
+                        <li :class="{disabled: current_page <= 1}"><a href="#" @click="change(current_page - 1)">&lt;</a></li>
+                        <li v-for="page in pages" :key="page" :class="{active: page === current_page}">
+                            <a href="#" @click="change(page)">@{{page}}</a>
+                        </li>
+                        <li :class="{disabled: current_page >= last_page}"><a href="#" @click="change(current_page + 1)">&gt;</a></li>
+                        <li :class="{disabled: current_page >= last_page}"><a href="#" @click="change(last_page)">&raquo;</a></li>
+                    </ul>
+                </div>
             <table>
                 <tr>
                     <td>面接予定日</td>

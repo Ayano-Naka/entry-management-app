@@ -26,7 +26,7 @@ class PostController extends Controller
     public function getData(){
         $posts = Post::where('user_id',Auth::id())
         ->orderBy('id','desc')
-        ->get();
+        ->paginate(4);
         return response()->json($posts);
     }
 

@@ -8,14 +8,14 @@ new Vue({
             prefs: [],
             stages:[],
             area_search:0,
-            stage_search:0
+            stage_search:0,
+            current_page: 1,
+            last_page: 1,
+            total: 1,
+            from: 0,
+            to: 0
             },
             methods:{
-                fetchPosts:function(){
-                    axios.get('/getData').then((res)=>{
-                        this.posts = res.data
-                    });
-                },
                 getPref:function(){
                     axios.get('/getPref').then((res)=>{
                         this.prefs = res.data
@@ -32,12 +32,27 @@ new Vue({
                         this.isCalculating = false
                         this.searchQueryIsDirty = false
                     }.bind(this),1000)
-                },500)
+                },500),
+                load(page) {
+                    axios.get('/getData?page=' + page).then(({data}) => {
+                    this.posts = data.data
+                    this.current_page = data.current_page
+                    this.last_page = data.last_page
+                    this.total = data.total
+                    this.from = data.from
+                    this.to = data.to
+                    })
+                },
+                change(page) {
+                if (page >= 1 && page <= this.last_page) this.load(page)
+                }
             },
             created(){
-                this.fetchPosts();
                 this.getPref();
                 this.getStage();
+            },
+            mounted() {
+                this.load(1)
             },
             computed: {
                 searchIndicator: function () {
@@ -60,12 +75,19 @@ new Vue({
                                 post.job.includes(this.searchQuery) ||
                                 post.officer.includes(this.searchQuery)
                     })
-                }
+                },
+                pages() {
+                    let start = _.max([this.current_page - 2, 1])
+                    let end = _.min([start + 5, this.last_page + 1])
+                    start = _.max([end - 5, 1])
+                    return _.range(start, end)
+                },
                 },
                 watch: {
                     searchQuery: function () {
                     this.searchQueryIsDirty = true
                     this.expensiveOperation()
+                    this.current_page= 1;
                 }
                 },
     });
