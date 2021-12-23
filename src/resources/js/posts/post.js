@@ -34,7 +34,14 @@ new Vue({
                     }.bind(this),1000)
                 },500),
                 load(page) {
-                    axios.get('/getData?page=' + page).then(({data}) => {
+                    axios.get('/getData?page=' + page, {
+                        params: {
+                            // ここにクエリパラメータを指定する
+                            pref_id:this.area_search,
+                            stage_id:this.stage_search,
+                            keyword:this.searchQuery
+                        }
+                    }).then(({data}) => {
                     this.posts = data.data
                     this.current_page = data.current_page
                     this.last_page = data.last_page
@@ -44,7 +51,19 @@ new Vue({
                     })
                 },
                 change(page) {
-                if (page >= 1 && page <= this.last_page) this.load(page)
+                    if (page >= 1 && page <= this.last_page) this.load(page)
+                },
+                area_select(pref_id){
+                    this.area_search = pref_id
+                    this.load(1)
+                },
+                stage_select(stage_id){
+                    this.stage_search = stage_id
+                    this.load(1);
+                },
+                keyword_search(keyword){
+                    this.searchQuery = keyword
+                    this.load(1)
                 }
             },
             created(){

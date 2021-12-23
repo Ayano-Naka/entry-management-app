@@ -23,10 +23,45 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
-    public function getData(){
-        $posts = Post::where('user_id',Auth::id())
-        ->orderBy('id','desc')
-        ->paginate(4);
+    public function getData(Request $request){
+        $query = Post::query();
+
+        $pref_id = $request->pref_id;
+        $stage_id = $request->stage_id;
+        $keyword = $request->keyword;
+
+        if($pref_id !==0){
+            if(!empty($pref_id)){
+                $query->where(function($query) use($pref_id){
+                    $query->where('pref_id', $pref_id);
+                });
+            }
+        }
+
+        if($stage_id !==0){
+            if(!empty($stage_id)){
+                $query->where(function($query) use($stage_id){
+                    $query->where('stage_id', $stage_id);
+                });
+            }
+        }
+
+        if($keyword !==''){
+        if(!empty($keyword)){
+            $query->where(function($query) use($keyword){
+                $query->Where('company','like','%' . $keyword. '%')
+                    ->orWhere('city','like','%' . $keyword. '%')
+                    ->orWhere('job','like','%' . $keyword. '%')
+                    ->orWhere('officer','like','%' . $keyword. '%')
+                    ->orWhere('memo','like','%' . $keyword. '%');
+            });
+        }
+    }
+
+        $posts = $query->where('user_id', Auth::id())
+                        ->orderBy('id','desc')
+                        ->paginate(4);
+
         return response()->json($posts);
     }
 

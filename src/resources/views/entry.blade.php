@@ -58,21 +58,21 @@
             <i class="material-icons">search</i>
         </p>
             <div class="pull-down">
-                <select name="pref_id"　id="pref_id" v-model="area_search"> 
+                <select name="pref_id"　id="pref_id" v-model="area_search" @change="area_select(area_search)"> 
                     <option value="0" disabled selected hidden>都道府県</option>
                     <option v-for="(pref,index) in prefs" :value="index">@{{ pref }}</option>
                 </select>
             </div>
         <p class="search-parts">×</p>
         <div class="pull-down">
-            <select name="stage_id" id="stage_id" v-model="stage_search">
+            <select name="stage_id" id="stage_id" v-model="stage_search" @change="stage_select(stage_search)">
                 <option value="0" disabled selected hidden>選考状況</option> 
                 <option v-for="(stage,index) in stages" :value="index">@{{ stage }}</option>
             </select>
         </div>
         <p class="search-parts">×</p>
         <div class="search-box">
-            <input v-model="searchQuery" placeholder="キーワードを入力">
+            <input v-model="searchQuery" placeholder="キーワードを入力" @input="keyword_search(searchQuery)">
         </div>
     </div>
     <!-- latest list -->
