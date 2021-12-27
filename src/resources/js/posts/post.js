@@ -89,6 +89,9 @@ new Vue({
                     }
                     return true
                 }
+                if (post.memo == null) {
+                    return false;
+                }
                 return post.company.includes(this.searchQuery) ||
                     post.city.includes(this.searchQuery) ||
                     post.job.includes(this.searchQuery) ||
