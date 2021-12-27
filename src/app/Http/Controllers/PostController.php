@@ -137,5 +137,4 @@ class PostController extends Controller
         Post::find($request->id)->delete();
             return redirect('/');
     }
-
 }
