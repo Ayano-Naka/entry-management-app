@@ -92,7 +92,8 @@ new Vue({
                         return post.company.includes(this.searchQuery)||
                                 post.city.includes(this.searchQuery) ||
                                 post.job.includes(this.searchQuery) ||
-                                post.officer.includes(this.searchQuery)
+                                post.officer.includes(this.searchQuery) ||
+                                post.memo.includes(this.searchQuery)
                     })
                 },
                 pages() {
