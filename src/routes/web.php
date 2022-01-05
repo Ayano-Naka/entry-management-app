@@ -37,6 +37,11 @@ Route::middleware('verified')->group(function () {
 
 
 
+Route::get('/getCountOne','PostController@getCountOne');
+Route::get('/getCountTwo','PostController@getCountTwo');
+Route::get('/getCountThree','PostController@getCountThree');
+Route::get('/getCountFour','PostController@getCountFour');
+Route::get('/getCountFive','PostController@getCountFive');
 
 Route::get('/', 'PostController@getPosts');
 Route::get('/getData', 'PostController@getData');

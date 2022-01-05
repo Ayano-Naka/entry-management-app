@@ -13,7 +13,12 @@ new Vue({
         last_page: 1,
         total: 1,
         from: 0,
-        to: 0
+        to: 0,
+        countOne:[],
+        countTwo:[],
+        countThree:[],
+        countFour:[],
+        countFive:[]
     },
     methods:{
         getPref:function(){
@@ -25,6 +30,31 @@ new Vue({
             axios.get('/getStage').then((res)=>{
                 this.stages = res.data
             });
+        },
+        getCountOne:function(){
+            axios.get('/getCountOne').then((res) =>
+                this.countOne = res.data
+            )
+        },
+        getCountTwo:function(){
+            axios.get('/getCountTwo').then((res) =>
+                this.countTwo = res.data
+            )
+        },
+        getCountThree:function(){
+            axios.get('/getCountThree').then((res) =>
+                this.countThree = res.data
+            )
+        },
+        getCountFour:function(){
+            axios.get('/getCountFour').then((res) =>
+                this.countFour = res.data
+            )
+        },
+        getCountFive:function(){
+            axios.get('/getCountFive').then((res) =>
+                this.countFive = res.data
+            )
         },
         expensiveOperation: _.debounce(function (){
             this.isCalculating = true
@@ -69,6 +99,11 @@ new Vue({
     created(){
         this.getPref();
         this.getStage();
+        this.getCountOne();
+        this.getCountTwo();
+        this.getCountThree();
+        this.getCountFour();
+        this.getCountFive();
     },
     mounted() {
         this.load(1)

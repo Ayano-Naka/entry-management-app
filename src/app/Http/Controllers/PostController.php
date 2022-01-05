@@ -93,6 +93,54 @@ class PostController extends Controller
         return response()->json($stages);
     }
 
+
+    public function getCountOne(){
+
+        $posts = Post::where('user_id',Auth::id())
+        ->where('stage_id',1)
+        ->get();
+
+        return response()->json($posts);
+    }
+
+    public function getCountTwo(){
+
+        $posts = Post::where('user_id',Auth::id())
+        ->where('stage_id',2)
+        ->get();
+
+        return response()->json($posts);
+    }
+
+    public function getCountThree(){
+
+        $posts = Post::where('user_id',Auth::id())
+        ->where('stage_id',3)
+        ->get();
+
+        return response()->json($posts);
+    }
+
+
+    public function getCountFour(){
+
+        $posts = Post::where('user_id',Auth::id())
+        ->where('stage_id',4)
+        ->get();
+
+        return response()->json($posts);
+    }
+
+    public function getCountFive(){
+
+        $posts = Post::where('user_id',Auth::id())
+        ->where('stage_id',5)
+        ->get();
+
+        return response()->json($posts);
+    }
+
+
     public function new(){
         $prefs = config('pref');
         $stages = config('stage');

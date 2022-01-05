@@ -8,50 +8,21 @@
 @endif
 
 <!-- main -->
+<div id="post_top">
 <div class="main-visual">
     <section class="shapes-group">
-        @foreach($first as $one)
-        <div class="tags"><p class="text">エントリー中</p>{{$one->count_stageId}}件</div>
-        @endforeach
+        <div class="tags"><p class="text">エントリー中</p>@{{countOne.length}}件</div>
 
-        @if(count($first) <= 0)
-        <div class="tags"><p class="text">エントリー中</p>0件</div>
-        @endif
+        <div class="tags"><p class="text">書類選考中</p>@{{countTwo.length}}件</div>
 
-        @foreach($second as $two)
-        <div class="tags"><p class="text">書類選考中</p>{{$two->count_stageId}}件</div>
-        @endforeach
+        <div class="tags"><p class="text">一次選考中</p>@{{countThree.length}}件</div>
 
-        @if(count($second) <= 0)
-        <div class="tags"><p class="text">書類選考中</p>0件</div>
-        @endif
+        <div class="tags"><p class="text">二次選考中</p>@{{countFour.length}}件</div>
 
-        @foreach($third as $three)
-        <div class="tags"><p class="text">一次選考中</p>{{$three->count_stageId}}件</div>
-        @endforeach
+        <div class="box"><p class="text">内定</p>@{{countFive.length}}件</div>
 
-        @if(count($third) <= 0)
-        <div class="tags"><p class="text">一次選考中</p>0件</div>
-        @endif
-
-        @foreach($fourth as $four)
-        <div class="tags"><p class="text">二次選考中</p>{{$four->count_stageId}}件</div>
-        @endforeach
-
-        @if(count($fourth) <= 0)
-        <div class="tags"><p class="text">二次選考中</p>0件</div>
-        @endif
-
-        @foreach($fifth as $five)
-        <div class="box"><p class="text">内定</p>{{$five->count_stageId}}件</div>
-        @endforeach
-
-        @if(count($fifth) <= 0)
-        <div class="box"><p class="text">内定</p>0件</div>
-        @endif
     </section>
 </div>
-<div id="post_top">
 <!--search -->
     <div class="search-wrapper">
         <p class="search-parts">
