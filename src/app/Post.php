@@ -34,4 +34,8 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function setLimitAttribute($field){
+        $this->attributes['limit'] = trim($field) !== '' ? $field : null;
+    }
+
 }

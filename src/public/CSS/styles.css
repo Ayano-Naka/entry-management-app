@@ -276,7 +276,7 @@ aside{
 }
 
 #latest-list table td{
-    padding: 2rem;
+    padding: 1.7rem;
     width: 5%;
     border-bottom: 1px solid #bbbbbb;
 }
@@ -416,7 +416,7 @@ h1{
     width: 100%;
 }
 
-.memo-box textarea{
+.memo-box input{
     box-sizing: border-box;
     position: relative;
     border: 1px solid #bbbbbb;

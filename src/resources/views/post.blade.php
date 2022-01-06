@@ -89,8 +89,8 @@
         <tr>
             <td class="item">メモ</td>
             <td>
-                <div class="memo-box">    
-                    <textarea name="memo" placeholder="メモを入力"></textarea>
+                <div class="memo-box">
+                    <input type="text" name="memo" placeholder="メモを入力">
                 </div>
             </td>
         </tr>

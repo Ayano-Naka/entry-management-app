@@ -20,9 +20,10 @@ class CreatePostsTable extends Migration
             $table->string('city');
             $table->integer('stage_id');
             $table->string('job');
-            $table->date('limit') ->nullable();
+            $table->date('limit')->nullable();
             $table->string('officer');
-            $table->text('memo') ->nullable();
+            // $table->text('memo') ->nullable();
+            $table->string('memo')->default('');
             $table->timestamps();
         });
     }
