@@ -10,6 +10,8 @@ class Post extends Model
 {
     protected $guarded = ['id']; 
 
+    protected $appends = ['prefName','stageName'];
+
     public function getPrefNameAttribute(){
         return config('pref.'.$this->pref_id);
     }
@@ -30,6 +32,10 @@ class Post extends Model
 
     public function user(){
         return $this->belongsTo('App\User');
+    }
+
+    public function setLimitAttribute($field){
+        $this->attributes['limit'] = trim($field) !== '' ? $field : null;
     }
 
 }

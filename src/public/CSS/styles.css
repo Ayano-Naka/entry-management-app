@@ -167,13 +167,9 @@ aside{
 
 .search-wrapper{
     margin: 5rem 2rem 3rem 2rem;
-}
-
-.search-wrapper form{
     display: flex;
     justify-content: space-around;
 }
-
 
 .pull-down{
     overflow: hidden;
@@ -280,7 +276,7 @@ aside{
 }
 
 #latest-list table td{
-    padding: 2rem;
+    padding: 1.7rem;
     width: 5%;
     border-bottom: 1px solid #bbbbbb;
 }
@@ -420,7 +416,7 @@ h1{
     width: 100%;
 }
 
-.memo-box textarea{
+.memo-box input{
     box-sizing: border-box;
     position: relative;
     border: 1px solid #bbbbbb;
@@ -635,7 +631,7 @@ input[type="file"]{
     text-decoration: none;
 }
 
-.todo-table .delete input[type="submit"]{
+.todo-table .delete button{
     background: #fe345b;
     color: #fff;
     padding: 0.7em 1em;
@@ -646,8 +642,15 @@ input[type="file"]{
     opacity: 0.7;
 }
 
-.todo-table input[type="submit"]:hover{
+.todo-table button:hover{
     opacity: 0.7;
+}
+
+.todo-table input{
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #bbbbbb;
+    padding: 3px 10px;
 }
 
 

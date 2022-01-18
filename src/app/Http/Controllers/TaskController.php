@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,42 +22,40 @@ class TaskController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        $tasks = Task::where('user_id', Auth::id())
-            ->orderBy('id','desc')
-            ->paginate(5);
-        return view('task',[
-            "tasks" => $tasks
-        ]);
+    public function getTasks(){
+        $tasks = User::find(Auth::id())->tasks;
+        return view('task', compact('tasks'));
     }
 
-    public function create(CreateTask $request){
-        $task = new Task();
-        $task->user_id = auth()->id();
-        $task->task = $request->task;
-        $task->limit = $request->limit;
-        $task -> save();
-        return redirect('/task');
+    public function addTask(Request $request){
+    $task = new Task;
+    $task->user_id = auth()->id();
+    $task->task = $request->task;
+    $task->limit = $request->limit;
+    $task->save();
+
+    $tasks = User::find(Auth::id())->tasks;
+    return $tasks;
     }
 
-    public function showEditForm(int $id){
-        $task = Task::find($id);
-        return view('edit',[
-            "task" => $task,
-        ]);
+    public function deleteTask(Request $request){
+        $task = Task::find($request->id)->delete();
+
+        $tasks = User::find(Auth::id())->tasks;
+        return $tasks;
     }
 
-    public function edit(CreateTask $request){
+    public function editTask(Request $request){
         Task::find($request->id)->update([
             'task' => $request->task,
-            'limit'=>$request->limit
+            'limit' => $request->limit
         ]);
-        return redirect('/task');
+        $tasks = Task::where('user_id', Auth::id())->get();
+        return response()->json($tasks);
     }
 
-    public function delete(Request $request){
-        Task::find($request->id)->delete();
-        return redirect('/task');
+    public function getData(){
+        $tasks = Task::where('user_id',Auth::id())->get();
+        return response()->json($tasks);
     }
-
 }

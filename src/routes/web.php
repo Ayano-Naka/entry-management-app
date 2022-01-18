@@ -15,15 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/task','TaskController@index');
+Route::get('/task', 'TaskController@getTasks');
+Route::get('/task/getData', 'TaskController@getData');
 
-Route::post('/task','TaskController@create');
+Route::post('/task', 'TaskController@addTask');
 
-Route::get('/edit/{id}','TaskController@showEditForm');
+Route::post('/task/del', 'TaskController@deleteTask');
 
-Route::post('/edit', 'TaskController@edit');
-
-Route::post('/task/{id}', 'TaskController@delete');
+Route::post('/task/edit','TaskController@editTask');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -36,17 +35,29 @@ Route::middleware('verified')->group(function () {
     });
 });
 
-Route::get('/', 'PostController@index')->name('posts.search');
+
+
+Route::get('/getCountOne','PostController@getCountOne');
+Route::get('/getCountTwo','PostController@getCountTwo');
+Route::get('/getCountThree','PostController@getCountThree');
+Route::get('/getCountFour','PostController@getCountFour');
+Route::get('/getCountFive','PostController@getCountFive');
+
+Route::get('/', 'PostController@getPosts');
+Route::get('/getData', 'PostController@getData');
+Route::get('/getPref','PostController@getPref');
+
+Route::get('/getStage','PostController@getStage');
+
+Route::get('/post', 'PostController@new')->name('pullDown');
 
 Route::post('/post','PostController@create');
 
-Route::get('/post', 'PostController@new')->name('pullDown');
+Route::get('/company/{id}','PostController@show')->name('posts.show');
 
 Route::get('/postedit/{id}', 'PostController@showEdit')->name('posts.edit');
 
 Route::post('/postedit/{id}', 'PostController@edit');
-
-Route::get('/company/{id}','PostController@show')->name('posts.show');
 
 Route::get('/postdel/{id}', 'PostController@showDelete');
 
