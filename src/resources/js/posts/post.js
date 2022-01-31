@@ -21,40 +21,16 @@ new Vue({
         countFive:[]
     },
     methods:{
-        getPref:function(){
-            axios.get('/getPref').then((res)=>{
-                this.prefs = res.data
+        getOptions:function(){
+            axios.get('/getOptions').then((res)=>{
+                this.prefs = res.data.prefs
+                this.stages = res.data.stages
+                this.countOne = res.data.first
+                this.countTwo = res.data.second
+                this.countThree = res.data.third
+                this.countFour = res.data.fourth
+                this.countFive = res.data.fifth
             });
-        },
-        getStage:function(){
-            axios.get('/getStage').then((res)=>{
-                this.stages = res.data
-            });
-        },
-        getCountOne:function(){
-            axios.get('/getCountOne').then((res) =>
-                this.countOne = res.data
-            )
-        },
-        getCountTwo:function(){
-            axios.get('/getCountTwo').then((res) =>
-                this.countTwo = res.data
-            )
-        },
-        getCountThree:function(){
-            axios.get('/getCountThree').then((res) =>
-                this.countThree = res.data
-            )
-        },
-        getCountFour:function(){
-            axios.get('/getCountFour').then((res) =>
-                this.countFour = res.data
-            )
-        },
-        getCountFive:function(){
-            axios.get('/getCountFive').then((res) =>
-                this.countFive = res.data
-            )
         },
         expensiveOperation: _.debounce(function (){
             this.isCalculating = true
@@ -97,13 +73,7 @@ new Vue({
         }
     },
     created(){
-        this.getPref();
-        this.getStage();
-        this.getCountOne();
-        this.getCountTwo();
-        this.getCountThree();
-        this.getCountFour();
-        this.getCountFive();
+        this.getOptions();
     },
     mounted() {
         this.load(1)

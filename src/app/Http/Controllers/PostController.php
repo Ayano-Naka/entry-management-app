@@ -83,9 +83,24 @@ class PostController extends Controller
         compact('posts','prefs','first','second','third','fourth','fifth'));
     }
 
-    public function getPref(){
+    public function getOptions(){
         $prefs = config('pref');
-        return response()->json($prefs);
+        $stages = config('stage');
+        $first = $this->getCount(1);
+        $second = $this->getCount(2);
+        $third = $this->getCount(3);
+        $fourth = $this->getCount(4);
+        $fifth = $this->getCount(5);
+
+        return response()->json([
+            'prefs' => $prefs,
+            'stages'=> $stages,
+            'first' => $first,
+            'second' => $second,
+            'third' => $third,
+            'fourth' => $fourth,
+            'fifth' => $fifth
+        ]);
     }
 
     public function getStage(){

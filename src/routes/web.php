@@ -35,19 +35,9 @@ Route::middleware('verified')->group(function () {
     });
 });
 
-Route::get('/getCount','PostController@getCount');
-
-Route::get('/getCountOne','PostController@getCountOne');
-Route::get('/getCountTwo','PostController@getCountTwo');
-Route::get('/getCountThree','PostController@getCountThree');
-Route::get('/getCountFour','PostController@getCountFour');
-Route::get('/getCountFive','PostController@getCountFive');
-
 Route::get('/', 'PostController@getPosts');
 Route::get('/getData', 'PostController@getData');
-Route::get('/getPref','PostController@getPref');
-
-Route::get('/getStage','PostController@getStage');
+Route::get('/getOptions','PostController@getOptions');
 
 Route::get('/post', 'PostController@new')->name('pullDown');
 
