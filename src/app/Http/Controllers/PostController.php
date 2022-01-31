@@ -93,6 +93,13 @@ class PostController extends Controller
         return response()->json($stages);
     }
 
+    public function getCount($count){
+        $count = Post::where('user_id',Auth::id())
+        ->where('stage_id',$count)
+        ->get();
+
+        return $count;
+    }
 
     public function getCountOne(){
 

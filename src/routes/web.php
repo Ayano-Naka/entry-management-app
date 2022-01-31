@@ -35,7 +35,7 @@ Route::middleware('verified')->group(function () {
     });
 });
 
-
+Route::get('/getCount','PostController@getCount');
 
 Route::get('/getCountOne','PostController@getCountOne');
 Route::get('/getCountTwo','PostController@getCountTwo');
